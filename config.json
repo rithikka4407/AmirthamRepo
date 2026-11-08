@@ -1,0 +1,232 @@
+{
+  "business": {
+    "name": "Delicious Bites Catering",
+    "tagline": "Exquisite Catering for Every Occasion",
+    "description": "From intimate gatherings to grand celebrations, we bring culinary excellence to your special moments with fresh ingredients and passionate service.",
+    "established": "2009",
+    "yearsExperience": 15
+  },
+  "contact": {
+    "phone": "+919876543210",
+    "phoneDisplay": "+91 98765 43210",
+    "phone2": "+919876543211",
+    "phone2Display": "+91 98765 43211",
+    "email": "info@deliciousbites.com",
+    "bookingEmail": "bookings@deliciousbites.com",
+    "whatsapp": "+919876543210",
+    "whatsappMessage": "Hi! I'm interested in your catering services."
+  },
+  "address": {
+    "street": "123 Food Street, Culinary District",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "pincode": "400001",
+    "country": "India",
+    "googleMapsUrl": "https://maps.google.com/?q=Mumbai"
+  },
+  "hours": {
+    "weekdays": "9:00 AM - 8:00 PM",
+    "saturday": "9:00 AM - 8:00 PM",
+    "sunday": "10:00 AM - 6:00 PM"
+  },
+  "social": {
+    "facebook": "https://facebook.com/deliciousbites",
+    "instagram": "https://instagram.com/deliciousbites",
+    "twitter": "https://twitter.com/deliciousbites",
+    "youtube": "https://youtube.com/deliciousbites"
+  },
+  "stats": {
+    "eventsCompleted": 500,
+    "menuItems": 50,
+    "happyClients": 10000,
+    "rating": 4.9
+  },
+  "hero": {
+    "backgroundImage": "https://images.unsplash.com/photo-1555244162-803834f70033?w=1920",
+    "subtitle": "Welcome to Delicious Bites"
+  },
+  "about": {
+    "mainImage": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500",
+    "secondaryImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"
+  },
+  "services": [
+    {
+      "id": 1,
+      "title": "Wedding Catering",
+      "description": "Make your special day unforgettable with our exquisite wedding catering services.",
+      "icon": "ring",
+      "features": ["Custom Menu Design", "Professional Service Staff", "Elegant Presentation"],
+      "featured": false
+    },
+    {
+      "id": 2,
+      "title": "Corporate Events",
+      "description": "Impress your clients and employees with professional corporate catering.",
+      "icon": "office-building",
+      "features": ["Breakfast & Lunch Options", "Conference Packages", "Team Building Events"],
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Private Parties",
+      "description": "Birthday parties, anniversaries, or any celebration - we make every event special.",
+      "icon": "party-popper",
+      "features": ["Themed Menus", "Flexible Packages", "Kids Party Specials"],
+      "featured": false
+    },
+    {
+      "id": 4,
+      "title": "Buffet Services",
+      "description": "Wide variety of cuisines served in elegant buffet style for any size gathering.",
+      "icon": "silverware-variant",
+      "features": ["Live Cooking Stations", "Multiple Cuisines", "Unlimited Servings"],
+      "featured": false
+    },
+    {
+      "id": 5,
+      "title": "Outdoor Catering",
+      "description": "Garden parties, beach events, or outdoor celebrations with full setup.",
+      "icon": "food",
+      "features": ["Complete Setup", "Weather-Ready Plans", "BBQ & Grill Options"],
+      "featured": false
+    },
+    {
+      "id": 6,
+      "title": "Delivery & Takeaway",
+      "description": "Can't host? No problem! We deliver fresh, hot meals right to your doorstep.",
+      "icon": "truck-delivery",
+      "features": ["Contactless Delivery", "Eco-Friendly Packaging", "Same Day Service"],
+      "featured": false
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "name": "Classic Bruschetta",
+      "description": "Fresh tomatoes, basil, garlic on toasted bread",
+      "price": 250,
+      "category": "starters",
+      "image": "https://images.unsplash.com/photo-1541014741259-de529411b96a?w=300"
+    },
+    {
+      "id": 2,
+      "name": "Butter Chicken",
+      "description": "Creamy tomato curry with tender chicken",
+      "price": 450,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1574484284002-952d92456975?w=300"
+    },
+    {
+      "id": 3,
+      "name": "Hyderabadi Biryani",
+      "description": "Aromatic rice with spices and tender meat",
+      "price": 400,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300"
+    },
+    {
+      "id": 4,
+      "name": "Gulab Jamun",
+      "description": "Deep-fried dumplings in sweet syrup",
+      "price": 150,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=300"
+    },
+    {
+      "id": 5,
+      "name": "Paneer Tikka",
+      "description": "Grilled cottage cheese with spices",
+      "price": 300,
+      "category": "starters",
+      "image": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=300"
+    },
+    {
+      "id": 6,
+      "name": "Dal Makhani",
+      "description": "Creamy black lentils slow-cooked overnight",
+      "price": 280,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=300"
+    },
+    {
+      "id": 7,
+      "name": "Mango Lassi",
+      "description": "Refreshing yogurt drink with mango",
+      "price": 120,
+      "category": "beverages",
+      "image": "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300"
+    },
+    {
+      "id": 8,
+      "name": "Rasmalai",
+      "description": "Soft cheese patties in sweetened milk",
+      "price": 180,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=300"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Priya Sharma",
+      "event": "Wedding, December 2023",
+      "rating": 5,
+      "text": "Delicious Bites made our wedding absolutely magical! The food was exceptional, and the service was impeccable.",
+      "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+    },
+    {
+      "id": 2,
+      "name": "Rajesh Kumar",
+      "event": "Corporate Events, 2024",
+      "rating": 5,
+      "text": "We've used Delicious Bites for all our corporate events. Professional, punctual, and outstanding food quality.",
+      "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+    },
+    {
+      "id": 3,
+      "name": "Anjali Mehta",
+      "event": "Birthday Party, 2024",
+      "rating": 4.5,
+      "text": "Amazing variety and presentation! They catered my daughter's birthday and kids loved every bit.",
+      "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "title": "Grand Wedding",
+      "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600",
+      "size": "large"
+    },
+    {
+      "id": 2,
+      "title": "Birthday Bash",
+      "image": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400",
+      "size": "normal"
+    },
+    {
+      "id": 3,
+      "title": "Corporate Gala",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400",
+      "size": "normal"
+    },
+    {
+      "id": 4,
+      "title": "Garden Party",
+      "image": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400",
+      "size": "normal"
+    },
+    {
+      "id": 5,
+      "title": "Buffet Setup",
+      "image": "https://images.unsplash.com/photo-1529543544277-750e04b4c6af?w=400",
+      "size": "tall"
+    },
+    {
+      "id": 6,
+      "title": "Dessert Station",
+      "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400",
+      "size": "normal"
+    }
+  ]
+}

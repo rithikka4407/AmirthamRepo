@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Delicious Bites Catering</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.3.67/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d4a373;
+            --sidebar-bg: #2c3e50;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f5f6fa; margin: 0; }
+        
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: var(--sidebar-bg);
+            color: #fff;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+        .sidebar-brand {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+        }
+        .sidebar-brand h4 { margin: 0; font-size: 1.2rem; }
+        .sidebar-brand small { color: rgba(255,255,255,0.6); }
+        .nav-menu { list-style: none; padding: 0; margin: 0; }
+        .nav-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .nav-menu li a:hover, .nav-menu li a.active {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border-left: 3px solid var(--primary);
+        }
+        .nav-menu li a .mdi { font-size: 1.3rem; }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .page-header h2 { margin: 0; color: #333; }
+        
+        /* Cards */
+        .admin-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .admin-card h5 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        /* Form Styles */
+        .form-label { font-weight: 500; color: #555; }
+        .form-control, .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(212,163,115,0.25);
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .btn-primary:hover {
+            background: #bc8c5c;
+            border-color: #bc8c5c;
+        }
+        
+        /* Section Tabs */
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+        
+        /* Preview Button */
+        .preview-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        /* Image Preview */
+        .img-preview {
+            max-width: 150px;
+            max-height: 100px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h4><span class="mdi mdi-cog"></span> Admin Panel</h4>
+            <small>Manage your website</small>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#" class="active" data-section="business"><span class="mdi mdi-store"></span> Business Info</a></li>
+            <li><a href="#" data-section="contact"><span class="mdi mdi-phone"></span> Contact Details</a></li>
+            <li><a href="#" data-section="social"><span class="mdi mdi-share-variant"></span> Social Media</a></li>
+            <li><a href="#" data-section="services"><span class="mdi mdi-room-service"></span> Services</a></li>
+            <li><a href="#" data-section="menu"><span class="mdi mdi-food"></span> Menu Items</a></li>
+            <li><a href="#" data-section="gallery"><span class="mdi mdi-image-multiple"></span> Gallery</a></li>
+            <li><a href="#" data-section="testimonials"><span class="mdi mdi-comment-quote"></span> Testimonials</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Business Info Section -->
+        <div id="business" class="section-content active">
+            <div class="page-header">
+                <h2><span class="mdi mdi-store"></span> Business Information</h2>
+                <button class="btn btn-primary" onclick="saveConfig()">
+                    <span class="mdi mdi-content-save"></span> Save Changes
+                </button>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Basic Details</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Business Name</label>
+                        <input type="text" class="form-control" id="businessName" placeholder="Your Business Name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Tagline</label>
+                        <input type="text" class="form-control" id="businessTagline" placeholder="Your catchy tagline">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" id="businessDescription" rows="3" placeholder="Describe your business..."></textarea>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Established Year</label>
+                        <input type="text" class="form-control" id="businessEstablished" placeholder="2009">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Years of Experience</label>
+                        <input type="number" class="form-control" id="businessYears" placeholder="15">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Rating</label>
+                        <input type="number" class="form-control" id="businessRating" step="0.1" max="5" placeholder="4.9">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Statistics (shown on homepage)</h5>
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Events Completed</label>
+                        <input type="number" class="form-control" id="statsEvents" placeholder="500">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Menu Items</label>
+                        <input type="number" class="form-control" id="statsMenuItems" placeholder="50">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Happy Clients</label>
+                        <input type="number" class="form-control" id="statsClients" placeholder="10000">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Rating</label>
+                        <input type="number" class="form-control" id="statsRating" step="0.1" placeholder="4.9">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="section-content">
+            <div class="page-header">
+                <h2><span class="mdi mdi-phone"></span> Contact Details</h2>
+                <button class="btn btn-primary" onclick="saveConfig()">
+                    <span class="mdi mdi-content-save"></span> Save Changes
+                </button>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Phone Numbers</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Primary Phone (for WhatsApp & Calls)</label>
+                        <input type="tel" class="form-control" id="contactPhone" placeholder="+919876543210">
+                        <small class="text-muted">Include country code, no spaces</small>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Display Format</label>
+                        <input type="text" class="form-control" id="contactPhoneDisplay" placeholder="+91 98765 43210">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Secondary Phone</label>
+                        <input type="tel" class="form-control" id="contactPhone2" placeholder="+919876543211">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Display Format</label>
+                        <input type="text" class="form-control" id="contactPhone2Display" placeholder="+91 98765 43211">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-card">
+                <h5>WhatsApp Settings</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">WhatsApp Number</label>
+                        <input type="tel" class="form-control" id="contactWhatsapp" placeholder="+919876543210">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Default Message</label>
+                        <input type="text" class="form-control" id="contactWhatsappMsg" placeholder="Hi! I'm interested in your services.">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Email Addresses</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Primary Email</label>
+                        <input type="email" class="form-control" id="contactEmail" placeholder="info@yourbusiness.com">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Booking Email</label>
+                        <input type="email" class="form-control" id="contactBookingEmail" placeholder="bookings@yourbusiness.com">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Address</h5>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label">Street Address</label>
+                        <input type="text" class="form-control" id="addressStreet" placeholder="123 Food Street, Area Name">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" id="addressCity" placeholder="Mumbai">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-control" id="addressState" placeholder="Maharashtra">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">PIN Code</label>
+                        <input type="text" class="form-control" id="addressPincode" placeholder="400001">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Google Maps URL</label>
+                        <input type="url" class="form-control" id="addressMapsUrl" placeholder="https://maps.google.com/?q=your+location">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Working Hours</h5>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Mon - Fri</label>
+                        <input type="text" class="form-control" id="hoursWeekdays" placeholder="9:00 AM - 8:00 PM">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Saturday</label>
+                        <input type="text" class="form-control" id="hoursSaturday" placeholder="9:00 AM - 8:00 PM">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Sunday</label>
+                        <input type="text" class="form-control" id="hoursSunday" placeholder="10:00 AM - 6:00 PM">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Section -->
+        <div id="social" class="section-content">
+            <div class="page-header">
+                <h2><span class="mdi mdi-share-variant"></span> Social Media Links</h2>
+                <button class="btn btn-primary" onclick="saveConfig()">
+                    <span class="mdi mdi-content-save"></span> Save Changes
+                </button>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Social Profiles</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label"><span class="mdi mdi-facebook text-primary"></span> Facebook</label>
+                        <input type="url" class="form-control" id="socialFacebook" placeholder="https://facebook.com/yourpage">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><span class="mdi mdi-instagram text-danger"></span> Instagram</label>
+                        <input type="url" class="form-control" id="socialInstagram" placeholder="https://instagram.com/yourpage">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><span class="mdi mdi-twitter text-info"></span> Twitter</label>
+                        <input type="url" class="form-control" id="socialTwitter" placeholder="https://twitter.com/yourpage">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><span class="mdi mdi-youtube text-danger"></span> YouTube</label>
+                        <input type="url" class="form-control" id="socialYoutube" placeholder="https://youtube.com/yourchannel">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div id="services" class="section-content">
+            <div class="page-header">
+                <h2><span class="mdi mdi-room-service"></span> Services</h2>
+                <button class="btn btn-primary" onclick="saveConfig()">
+                    <span class="mdi mdi-content-save"></span> Save Changes
+                </button>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Manage Services</h5>
+                <div id="servicesContainer"></div>
+                <button class="btn btn-outline-primary mt-3" onclick="addService()">
+                    <span class="mdi mdi-plus"></span> Add Service
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Section -->
+        <div id="menu" class="section-content">
+            <div class="page-header">
+                <h2><span class="mdi mdi-food"></span> Menu Items</h2>
+                <button class="btn btn-primary" onclick="saveConfig()">
+                    <span class="mdi mdi-content-save"></span> Save Changes
+                </button>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Manage Menu</h5>
+                <div id="menuContainer"></div>
+                <button class="btn btn-outline-primary mt-3" onclick="addMenuItem()">
+                    <span class="mdi mdi-plus"></span> Add Menu Item
+                </button>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div id="gallery" class="section-content">
+            <div class="page-header">
+                <h2><span class="mdi mdi-image-multiple"></span> Gallery</h2>
+                <button class="btn btn-primary" onclick="saveConfig()">
+                    <span class="mdi mdi-content-save"></span> Save Changes
+                </button>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Manage Gallery Images</h5>
+                <div id="galleryContainer"></div>
+                <button class="btn btn-outline-primary mt-3" onclick="addGalleryItem()">
+                    <span class="mdi mdi-plus"></span> Add Image
+                </button>
+            </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div id="testimonials" class="section-content">
+            <div class="page-header">
+                <h2><span class="mdi mdi-comment-quote"></span> Testimonials</h2>
+                <button class="btn btn-primary" onclick="saveConfig()">
+                    <span class="mdi mdi-content-save"></span> Save Changes
+                </button>
+            </div>
+            
+            <div class="admin-card">
+                <h5>Customer Reviews</h5>
+                <div id="testimonialsContainer"></div>
+                <button class="btn btn-outline-primary mt-3" onclick="addTestimonial()">
+                    <span class="mdi mdi-plus"></span> Add Testimonial
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Button -->
+    <a href="index.html" target="_blank" class="btn btn-success btn-lg preview-btn">
+        <span class="mdi mdi-eye"></span> Preview Website
+    </a>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
